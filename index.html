@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
@@ -7,181 +7,189 @@
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-  <header class="site-header">
-    <div class="container header-inner">
-      <div>
-        <p class="eyebrow">Conference Paper Website</p>
-        <h1>Language-Guided Representation Learning for Robust Cross-Sensor Material Recognition</h1>
-        <p class="subtitle">A GitHub Pages landing page for your IROS 2026 paper on sensor-robust tactile material recognition.</p>
-      </div>
-      <nav class="top-nav">
-        <a href="#abstract">Abstract</a>
-        <a href="#introduction">Introduction</a>
-        <a href="#methodology">Methodology</a>
-        <a href="#results">Results</a>
-        <a href="#figures">Figures</a>
-        <a href="#contact">Contact</a>
-      </nav>
-    </div>
-  </header>
-
-  <main class="container">
-    <section id="abstract" class="hero-card">
-      <div>
-        <h2>Abstract</h2>
-        <p>
-          Robots need touch to manipulate objects safely and reliably, as many properties such as softness, texture, and contact stability are hard to infer from vision alone. Vision-based tactile sensors produce different observations for the same material due to variations in optics, elastomer properties, and illumination, which hurts cross-sensor generalization.
-        </p>
-        <p>
-          We propose a language-guided distillation framework that learns sensor-robust tactile representations. Language encodes high-level semantic properties of touch (e.g., rough, soft, slippery) that remain invariant across sensing hardware, providing a sensor-agnostic supervisory signal.
-        </p>
-        <p>
-          Our method achieves 95% accuracy in the 100-shot setting, improves cross-sensor transfer by +13.3% on average, and yields up to +19% accuracy gains across six existing tactile datasets.
-        </p>
-        <div class="hero-actions">
-          <a class="button" href="#figures">Figure Gallery</a>
-          <a class="button button-secondary" href="Language_Tactile_IROS_2026_FINAL.pdf" target="_blank">Download PDF</a>
+  <div class="page-shell">
+    <header class="hero">
+      <div class="hero-inner container">
+        <div class="hero-text">
+          <p class="eyebrow">IROS 2026 Conference Paper</p>
+          <h1>Language-Guided Representation Learning for Robust Cross-Sensor Material Recognition</h1>
+          <p class="hero-description">
+            A language-guided distillation framework for sensor-robust tactile representations that generalize across vision-based tactile sensors.
+          </p>
+          <div class="hero-meta">
+            <p><strong>Authors:</strong> Mashood M. Mohsan, Muhayy Ud Din, Binzhao Xu, Ahmad Abubakar, Irfan Hussain*</p>
+            <p><strong>Affiliation:</strong> Khalifa University Center for Autonomous Robotic Systems (KUCARS), Khalifa University, UAE</p>
+          </div>
+          <div class="hero-actions">
+            <a class="button button-primary" href="Language_Tactile_IROS_2026_FINAL.pdf" target="_blank">Download Paper</a>
+            <a class="button button-secondary" href="#abstract">Read Abstract</a>
+          </div>
+        </div>
+        <div class="hero-stats">
+          <div class="stat-card">
+            <span class="stat-value">56K</span>
+            <span class="stat-label">Multimodal samples</span>
+          </div>
+          <div class="stat-card">
+            <span class="stat-value">95%</span>
+            <span class="stat-label">100-shot accuracy</span>
+          </div>
+          <div class="stat-card">
+            <span class="stat-value">+19%</span>
+            <span class="stat-label">Max cross-sensor gain</span>
+          </div>
         </div>
       </div>
-      <div class="hero-summary">
-        <p><strong>Title:</strong> Language-Guided Representation Learning for Robust Cross-Sensor Tactile Perception</p>
-        <p><strong>Authors:</strong> Mashood M. Mohsan, Muhayy Ud Din, Binzhao Xu, Ahmad Abubakar, Irfan Hussain*</p>
-        <p><strong>Affiliation:</strong> Khalifa University Center for Autonomous Robotic Systems (KUCARS), Khalifa University, UAE</p>
-      </div>
-    </section>
+    </header>
 
-    <section id="introduction" class="card">
-      <h2>Introduction</h2>
-      <p>
-        Tactile perception plays a fundamental role in robotic manipulation. While vision provides global scene understanding, touch enables inference of material properties and contact dynamics that are difficult to capture visually. Prior work shows that tactile sensing improves grasp prediction and material recognition.
-      </p>
-      <p>
-        Despite this progress, tactile perception remains strongly sensor-dependent. Differences in optical configuration, elastomer mechanics, illumination, and fabrication cause the same material to produce distinct contact images across devices. As a result, models trained on one sensor often degrade when applied to another, because learned features entangle semantic material properties with sensor-specific artefacts.
-      </p>
-      <p>
-        Humans describe tactile experiences using language that abstracts away sensing mechanisms. Words such as smooth, rough, soft, and slippery encode semantic material properties independent of hardware. Language therefore provides a sensor-agnostic semantic space for aligning tactile observations across sensors.
-      </p>
-    </section>
+    <nav class="page-nav container">
+      <a href="#abstract">Abstract</a>
+      <a href="#introduction">Introduction</a>
+      <a href="#methodology">Methodology</a>
+      <a href="#results">Results</a>
+      <a href="#figures">Figures</a>
+      <a href="#resources">Resources</a>
+      <a href="#contact">Contact</a>
+    </nav>
 
-    <section id="methodology" class="card split-grid">
-      <div>
-        <h2>Methodology</h2>
+    <main class="container main-content">
+      <section id="abstract" class="section card">
+        <h2>Abstract</h2>
         <p>
-          The proposed framework uses a frozen language encoder to provide semantic supervision for a tactile Vision Transformer. The tactile encoder is trained with a combined loss: supervised material classification plus feature-level language distillation.
+          Robots need touch to manipulate objects safely and reliably, as many properties, such as softness, texture, and contact stability, are hard to infer from vision alone. However, vision-based tactile sensors yield different observations of the same material due to variations in optics, elastomer properties, and illumination, leading to poor generalization when trained on a single or multiple sensors.
         </p>
-        <ul>
-          <li>Language teacher encoder (BART) remains frozen during training.</li>
-          <li>Tactile encoder learns to align its features with language embeddings.</li>
-          <li>After distillation, the tactile encoder is frozen and only a lightweight classifier is fine-tuned for downstream material recognition.</li>
-        </ul>
-      </div>
-      <div>
-        <h2>Dataset</h2>
         <p>
-          The paper constructs a multimodal tactile dataset with 56K samples by combining HCT and SSVTP data, adding human-annotated material labels. The dataset integrates tactile images, RGB views, language descriptions, and 32 material classes for benchmark evaluation.
+          We propose a language-guided distillation framework for learning sensor-robust tactile representations. Language encodes high-level semantic properties of touch (e.g., rough, soft, slippery) that remain invariant across sensing hardware, providing a natural sensor-agnostic supervisory signal.
         </p>
-      </div>
-    </section>
+        <p>
+          We construct a 56K-sample touch–language dataset with human-annotated material labels and train a tactile encoder to align sensor-specific tactile images with language embeddings in a shared semantic space. We evaluate our approach for few-shot learning and cross-sensor transfer and benchmark it on six existing tactile datasets.
+        </p>
+      </section>
 
-    <section id="results" class="card">
-      <h2>Results</h2>
-      <p>
-        The proposed model demonstrates strong few-shot learning and cross-sensor generalization. It significantly outperforms tactile-only baselines and achieves nearly human-level material recognition accuracy across multiple benchmarks.
-      </p>
-      <div class="result-grid">
-        <article>
-          <h3>Few-Shot Learning</h3>
-          <p>Reaches 95% accuracy in the 100-shot setting on the proposed tactile benchmark.</p>
-        </article>
-        <article>
-          <h3>Cross-Sensor Transfer</h3>
-          <p>Improves cross-sensor transfer by an average of +13.3% accuracy and up to +19% accuracy gains across six existing tactile datasets.</p>
-        </article>
-        <article>
-          <h3>Benchmark Comparison</h3>
-          <p>Outperforms baselines such as CMC, DeiT, and ConvNeXt on challenging tactile datasets including TAG, YCB, FEEL, SSVTP, HCT, and the proposed dataset.</p>
-        </article>
-      </div>
-    </section>
+      <section id="introduction" class="section card">
+        <h2>Introduction</h2>
+        <p>
+          Tactile perception plays a fundamental role in robotic manipulation. While vision provides global scene understanding, touch enables inference of material properties and contact dynamics that are difficult to capture visually. Prior work shows that tactile sensing improves grasp prediction and material recognition.
+        </p>
+        <p>
+          Despite recent progress, tactile perception remains strongly sensor-dependent. Differences in optical configuration, elastomer mechanics, illumination, and fabrication cause the same material to produce distinct contact images across devices. As a result, models trained on one sensor often degrade when applied to another, because learned features entangle semantic material properties with sensor-specific artefacts.
+        </p>
+        <p>
+          Humans describe tactile experiences using language that abstracts away sensing mechanisms. Words such as smooth, rough, soft, and slippery encode semantic material properties independent of hardware. Language therefore provides a sensor-agnostic semantic space for aligning tactile observations across sensors.
+        </p>
+      </section>
 
-    <section id="figures" class="card">
-      <h2>Figure Gallery</h2>
-      <p>
-        Upload the paper figures as PNG files. These placeholders can display your main diagrams and results.
-      </p>
-      <div class="figure-grid">
-        <figure>
-          <div class="figure-placeholder">Figure 1</div>
-          <figcaption>Overall method and sensor-agnostic tactile learning illustration</figcaption>
-        </figure>
-        <figure>
-          <div class="figure-placeholder">Figure 3</div>
-          <figcaption>Few-shot results and confusion matrix</figcaption>
-        </figure>
-        <figure>
-          <div class="figure-placeholder">Figure 5</div>
-          <figcaption>UMAP projections of tactile embeddings with and without language-guided distillation</figcaption>
-        </figure>
-        <figure>
-          <div class="figure-placeholder">Figure 6</div>
-          <figcaption>Grad-CAM visualizations for tactile model attention</figcaption>
-        </figure>
-      </div>
-      <div class="upload-note">
-        Recommended upload names:
-        <ul>
+      <section id="methodology" class="section card split-grid">
+        <div>
+          <h2>Methodology</h2>
+          <p>
+            We train a tactile Vision Transformer using both supervised material classification and language-based feature distillation. A frozen language encoder serves as the teacher, while the tactile encoder learns to align its representations with language semantics.
+          </p>
+          <ul>
+            <li>Language teacher encoder (BART) remains frozen during training.</li>
+            <li>The tactile encoder aligns sensor-dependent tactile features with a language semantic space.</li>
+            <li>After distillation, the tactile encoder is frozen and only a lightweight classifier is fine-tuned for downstream tasks.</li>
+          </ul>
+        </div>
+        <div>
+          <h2>Dataset</h2>
+          <p>
+            The dataset integrates tactile images, RGB observations, natural language descriptions, and material labels. It contains 56K samples across 32 material classes, constructed from HCT and SSVTP sources with human-annotated class labels for supervised evaluation.
+          </p>
+        </div>
+      </section>
+
+      <section id="results" class="section card">
+        <h2>Results</h2>
+        <p>
+          Our approach yields strong improvements in few-shot learning and cross-sensor transfer. It outperforms tactile-only baselines and generalizes to multiple tactile datasets with very limited adaptation data.
+        </p>
+        <div class="result-grid">
+          <article>
+            <h3>Few-Shot Performance</h3>
+            <p>Achieves 95% accuracy in the 100-shot setting on the proposed tactile benchmark.</p>
+          </article>
+          <article>
+            <h3>Cross-Sensor Transfer</h3>
+            <p>Improves cross-sensor transfer by an average of +13.3% accuracy and up to +19% accuracy on existing tactile datasets.</p>
+          </article>
+          <article>
+            <h3>Benchmark Gains</h3>
+            <p>Outperforms baselines such as CMC, DeiT, and ConvNeXt across TAG, YCB, FEEL, SSVTP, HCT, and the proposed dataset.</p>
+          </article>
+        </div>
+      </section>
+
+      <section id="figures" class="section card">
+        <h2>Figure Gallery</h2>
+        <p>Upload the paper figures as PNG files and I will place them directly into the gallery.</p>
+        <div class="figure-grid">
+          <figure>
+            <div class="figure-placeholder">Figure 1</div>
+            <figcaption>Overall method and sensor-agnostic tactile learning illustration.</figcaption>
+          </figure>
+          <figure>
+            <div class="figure-placeholder">Figure 3</div>
+            <figcaption>Few-shot learning results and confusion matrix.</figcaption>
+          </figure>
+          <figure>
+            <div class="figure-placeholder">Figure 5</div>
+            <figcaption>UMAP projections of tactile embeddings before and after distillation.</figcaption>
+          </figure>
+          <figure>
+            <div class="figure-placeholder">Figure 6</div>
+            <figcaption>Grad-CAM visualizations showing tactile attention.</figcaption>
+          </figure>
+        </div>
+        <p class="upload-note">Recommended filenames for uploads:</p>
+        <ul class="file-list">
           <li><code>fig1_overall.png</code></li>
           <li><code>fig3_fewshot.png</code></li>
           <li><code>fig5_umap.png</code></li>
           <li><code>fig6_gradcam.png</code></li>
         </ul>
-      </div>
-    </section>
+      </section>
 
-    <section id="resources" class="card split-grid">
-      <div>
-        <h2>Paper Resources</h2>
+      <section id="resources" class="section card split-grid">
+        <div>
+          <h2>Resources</h2>
+          <p>
+            The full paper is available below, and the figure placeholders can be replaced as soon as PNG versions are added to the repository.
+          </p>
+          <ul>
+            <li><strong>Paper PDF:</strong> <a href="Language_Tactile_IROS_2026_FINAL.pdf" target="_blank">Language_Tactile_IROS_2026_FINAL.pdf</a></li>
+            <li><strong>Figures:</strong> PNG images for diagrams and charts</li>
+            <li><strong>Supplement:</strong> code, dataset links, or slides</li>
+          </ul>
+        </div>
+        <div class="resource-card">
+          <h3>Deployment</h3>
+          <p>
+            Commit the HTML, CSS, PDF, and figures to the `gh_pages` branch. The site will then be published from the root of that branch.
+          </p>
+        </div>
+      </section>
+
+      <section id="contact" class="section card">
+        <h2>Contact</h2>
         <p>
-          The full paper is available below. Add the figure PNGs to the repository and the site will display them in the gallery.
+          The website now uses a clean, academic layout and directly reflects your paper title, abstract, introduction, methodology, dataset, and results summary.
         </p>
+        <p>Please upload the following figure PNGs:</p>
         <ul>
-          <li><strong>Paper PDF:</strong> <a href="Language_Tactile_IROS_2026_FINAL.pdf" target="_blank">Language_Tactile_IROS_2026_FINAL.pdf</a></li>
-          <li><strong>Figures:</strong> PNG images for diagrams and chart visualizations</li>
-          <li><strong>Supplement:</strong> code, dataset links, and slide downloads</li>
+          <li><strong>Figure 1:</strong> architecture / pipeline diagram</li>
+          <li><strong>Figure 3:</strong> few-shot performance and confusion matrix</li>
+          <li><strong>Figure 5:</strong> UMAP embedding visualization</li>
+          <li><strong>Figure 6:</strong> Grad-CAM attention visualization</li>
         </ul>
-      </div>
-      <div class="resource-card">
-        <h3>Deployment note</h3>
-        <p>
-          Commit the updated HTML, CSS, PDF, and figure files to the `gh_pages` branch. GitHub Pages will then publish this site.
-        </p>
-      </div>
-    </section>
+      </section>
+    </main>
 
-    <section id="contact" class="card">
-      <h2>Contact</h2>
-      <p>
-        The page now matches your paper title, abstract, introduction, contributions, dataset, and results summary.
-      </p>
-      <p>
-        I still need PNG versions of your paper figures to replace the placeholders. Please upload:
-      </p>
-      <ul>
-        <li><strong>Figure 1:</strong> Architecture / pipeline diagram</li>
-        <li><strong>Figure 3:</strong> Few-shot performance and confusion matrix</li>
-        <li><strong>Figure 5:</strong> UMAP embedding visualization</li>
-        <li><strong>Figure 6:</strong> Grad-CAM attention visualization</li>
-      </ul>
-      <p>
-        If you have additional figures, I will add them as extra gallery cards.
-      </p>
-    </section>
-  </main>
-
-  <footer class="site-footer">
-    <div class="container">
-      <p>Language Tactile &mdash; research paper portal for GitHub Pages.</p>
-    </div>
-  </footer>
+    <footer class="site-footer">
+      <div class="container footer-inner">
+        <p>Language-Guided Representation Learning for Robust Cross-Sensor Material Recognition | GitHub Pages site for your IROS 2026 paper.</p>
+      </div>
+    </footer>
+  </div>
 </body>
 </html>
