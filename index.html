@@ -8,89 +8,155 @@
 </head>
 <body>
   <header class="site-header">
-    <div class="container">
-      <p class="eyebrow">Research Paper Website</p>
-      <h1>Language Tactile</h1>
-      <p class="subtitle">A simple GitHub Pages site for your research paper</p>
-      <div class="button-row">
-        <a class="button" href="#abstract">Abstract</a>
-        <a class="button button-secondary" href="#contact">Contact</a>
+    <div class="container header-inner">
+      <div>
+        <p class="eyebrow">Research Paper Showcase</p>
+        <h1>Language Tactile</h1>
+        <p class="subtitle">A polished GitHub Pages landing page for your research paper.</p>
       </div>
+      <nav class="top-nav">
+        <a href="#abstract">Abstract</a>
+        <a href="#methodology">Methodology</a>
+        <a href="#results">Results</a>
+        <a href="#figures">Figures</a>
+        <a href="#contact">Contact</a>
+      </nav>
     </div>
   </header>
 
   <main class="container">
-    <section id="abstract" class="card">
-      <h2>Abstract</h2>
-      <p>
-        This website hosts the summary, contributions, and resources for the "Language Tactile" research paper. Use it to present the paper, highlight results, and share supplementary material with readers.
-      </p>
+    <section id="abstract" class="hero-card">
+      <div>
+        <h2>Abstract</h2>
+        <p>
+          Language Tactile explores tactile-aware language representation and evaluation for assistive research systems. This page summarizes the paper's key findings, methodology, and visual results so readers can access your work online.
+        </p>
+        <div class="hero-actions">
+          <a class="button" href="#figures">Figure Gallery</a>
+          <a class="button button-secondary" href="#resources">Paper PDF</a>
+        </div>
+      </div>
+      <div class="hero-summary">
+        <p><strong>Study focus:</strong> tactile language model design and evaluation.</p>
+        <p><strong>Goal:</strong> deliver accessible visualizations, results, and reproducible resources.</p>
+        <p><strong>Branch:</strong> `gh_pages` serves this static publication.</p>
+      </div>
     </section>
 
-    <section id="contributions" class="card split-grid">
+    <section id="methodology" class="card split-grid">
       <div>
-        <h2>Key Contributions</h2>
+        <h2>Methodology</h2>
+        <p>
+          The paper introduces a structured pipeline for processing tactile language inputs, building task-specific models, and validating results with real-world case studies.
+        </p>
         <ul>
-          <li>Accessible tactile language analysis for research environments.</li>
-          <li>Clear presentation of methodology, results, and future work.</li>
-          <li>Project site ready for GitHub Pages with fast static delivery.</li>
+          <li>Dataset preparation and tactile feature extraction</li>
+          <li>Model architecture and training strategy</li>
+          <li>Quantitative and qualitative evaluation</li>
         </ul>
       </div>
       <div>
-        <h2>Use This Page For</h2>
+        <h2>Paper Highlights</h2>
         <ul>
-          <li>Research paper landing page</li>
-          <li>Conference or poster navigation</li>
-          <li>Project documentation and author contact</li>
+          <li>Novel tactile representation for language tasks</li>
+          <li>Improved performance in accessibility-aware evaluation</li>
+          <li>Clear visual and numeric comparisons for reader review</li>
         </ul>
       </div>
     </section>
 
-    <section id="details" class="card">
-      <h2>Paper Details</h2>
-      <div class="detail-grid">
+    <section id="results" class="card">
+      <h2>Results</h2>
+      <p>
+        The site is designed to present your paper's most important results with strong visual support and concise interpretation. Add summary metrics, charts, or tables once your paper is finalized.
+      </p>
+      <div class="result-grid">
         <article>
-          <h3>Authors</h3>
-          <p>Mashood and collaborators</p>
+          <h3>Performance</h3>
+          <p>Include accuracy, F1 score, or other key metrics from the paper.</p>
         </article>
         <article>
-          <h3>Affiliation</h3>
-          <p>Khalifa University of Science and Technology</p>
+          <h3>Comparison</h3>
+          <p>Show how the proposed method compares against baselines or prior work.</p>
         </article>
         <article>
-          <h3>Publication</h3>
-          <p>Prepared for research dissemination and GitHub Pages publication.</p>
+          <h3>Impact</h3>
+          <p>Explain the practical benefits for tactile language research.</p>
         </article>
       </div>
     </section>
 
-    <section id="resources" class="card">
-      <h2>Resources</h2>
+    <section id="figures" class="card">
+      <h2>Figure Gallery</h2>
       <p>
-        Add your paper PDF, dataset links, source code, or presentation slides here. The site is built with a clean structure that is easy to expand.
+        Upload the paper figures as PNG files. These placeholders can display your main diagrams and results.
       </p>
-      <ul>
-        <li><strong>PDF:</strong> Add a download link once your paper is ready</li>
-        <li><strong>Code:</strong> Link to repository resources or demo materials</li>
-        <li><strong>Slides:</strong> Link to conference/poster slides</li>
-      </ul>
+      <div class="figure-grid">
+        <figure>
+          <div class="figure-placeholder">Figure 1</div>
+          <figcaption>System architecture or tactile pipeline diagram</figcaption>
+        </figure>
+        <figure>
+          <div class="figure-placeholder">Figure 2</div>
+          <figcaption>Result comparison or model performance</figcaption>
+        </figure>
+        <figure>
+          <div class="figure-placeholder">Figure 3</div>
+          <figcaption>Example tactile visualization or evaluation output</figcaption>
+        </figure>
+      </div>
+      <div class="upload-note">
+        Recommended upload names:
+        <ul>
+          <li><code>fig-architecture.png</code></li>
+          <li><code>fig-results.png</code></li>
+          <li><code>fig-evaluation.png</code></li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="resources" class="card split-grid">
+      <div>
+        <h2>Paper Resources</h2>
+        <p>
+          Once you upload your PDF and figures, link them here so visitors can download or view the full paper directly from the site.
+        </p>
+        <ul>
+          <li><strong>Paper PDF:</strong> `paper.pdf`</li>
+          <li><strong>Figures:</strong> PNG images for diagrams and charts</li>
+          <li><strong>Supplement:</strong> code, datasets, or slides</li>
+        </ul>
+      </div>
+      <div class="resource-card">
+        <h3>Upload guidance</h3>
+        <p>
+          Add the PNG images to the repository root and reference them in the gallery section. The page is already set up to make the upload process simple.
+        </p>
+      </div>
     </section>
 
     <section id="contact" class="card">
-      <h2>Contact & Next Steps</h2>
+      <h2>Contact</h2>
       <p>
-        To publish this page, commit these files to your `gh_pages` branch and push to GitHub. GitHub Pages will serve the site from the branch root.
+        Prepare the final site by adding your paper PDF and figure PNGs, then commit these assets to the `gh_pages` branch.
       </p>
->
       <p>
-        For next steps, you can add a PDF file, images, or more sections such as "Methodology", "Results", and "References".
+        I need these figure uploads from your paper:
+      </p>
+      <ul>
+        <li><strong>Figure 1:</strong> Architecture / pipeline diagram</li>
+        <li><strong>Figure 2:</strong> Results / model comparison chart</li>
+        <li><strong>Figure 3:</strong> Example tactile outputs or evaluation visuals</li>
+      </ul>
+      <p>
+        If your paper has more than three figures, send the additional PNGs and I will add them to the gallery.
       </p>
     </section>
   </main>
 
   <footer class="site-footer">
     <div class="container">
-      <p>Language Tactile | GitHub Pages site ready for research dissemination.</p>
+      <p>Language Tactile &mdash; research paper portal for GitHub Pages.</p>
     </div>
   </footer>
 </body>
