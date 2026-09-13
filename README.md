@@ -32,7 +32,7 @@
 
 Language descriptions guide a tactile image encoder to learn material representations across sensors. Training has two stages: distill a frozen BART language teacher into a ViT tactile student, then freeze the tactile encoder and train a material classifier. Inference uses tactile images alone.
 
-![Language–tactile distillation and downstream classification](assets/architecture.png)
+![Language–tactile distillation and downstream classification](assets/main.png)
 
 ## Quick start
 
