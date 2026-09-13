@@ -13,13 +13,13 @@
 </p>
 
 <p align="center">
-  <a href="https://www.ku.ac.ae/"><img src="assets/logos/khalifa-university.png" alt="Khalifa University" height="48"></a>
+  <a href="https://www.ku.ac.ae/"><img src="assets/logos/Khalifa_logo.png" alt="Khalifa University" height="48"></a>
   &nbsp;&nbsp;
-  <a href="https://touchripe.com/"><img src="assets/logos/touchripe.png" alt="TouchRIPE" height="48"></a>
+  <a href="https://touchripe.com/"><img src="assets/logos/TouchRIPE.png" alt="TouchRIPE" height="48"></a>
   &nbsp;&nbsp;
-  <a href="https://www.ku.ac.ae/kucars"><img src="assets/logos/kucars.jpg" alt="KUCARS" height="48"></a>
+  <a href="https://www.ku.ac.ae/kucars"><img src="assets/logos/KUCARS.jpg" alt="KUCARS" height="48"></a>
   &nbsp;&nbsp;
-  <a href="https://www.linkedin.com/company/ihlab/"><img src="assets/logos/aeris-lab.jpeg" alt="AERIS Lab" height="48"></a>
+  <a href="https://www.linkedin.com/company/ihlab/"><img src="assets/logos/ihlab_logo.jpeg" alt="AERIS Lab" height="48"></a>
 </p>
 
 <p align="center">
