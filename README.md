@@ -1,76 +1,118 @@
-<h1 align="center">
-  
-  <img src="./images/Khalifa_logo.png" height="50px"/> &nbsp;&nbsp;
-  <img src="./images/ihlab_logo.jpeg" height="50px" alt="iHLab Logo"/> &nbsp;&nbsp;
-  <img src="./images/KUCARS.jpg" height="40px"/>
-  <br/>
-</h1>
-
-<h2 align="center">
-A Wearable Thumb Device for Fruit Firmness Estimation with Vision-Based Tactile Sensing
-</h2>
+<h1 align="center">Language-Guided Representation Learning<br>for Robust Cross-Sensor Tactile Perception</h1>
 
 <p align="center">
-  <a href="https://mashood3624.github.io/WearableDevice/"><b>Project Website</b></a> •
-  <a href="https://mashood3624.github.io/WearableDevice/paper.pdf"><b>Paper</b></a> •
-  <a href="https://doi.org/10.1016/j.compag.2025.110593"><b>DOI</b></a> •
-  <a href="https://youtu.be/MaLs7fFNrok?si=vRf5nCoIOY40dm-0"><b>Video</b></a>
+  <img src="https://img.shields.io/badge/IROS_2026-Accepted-164E63" alt="Accepted at IROS 2026">
+  <a href="https://github.com/Mashood3624/Language_Tactile/blob/main/environment.yml"><img src="https://img.shields.io/badge/Python-3.10-3776AB?logo=python&amp;logoColor=white" alt="Python 3.10"></a>
+  <a href="https://github.com/Mashood3624/Language_Tactile/blob/main/environment.yml"><img src="https://img.shields.io/badge/PyTorch-2.0.1-EE4C2C?logo=pytorch&amp;logoColor=white" alt="PyTorch 2.0.1"></a>
 </p>
 
 <p align="center">
-   <img src="https://licensebuttons.net/l/by-nc-nd/4.0/88x31.png" alt="License: CC"/>
-   <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/"><b>License: CC BY-NC-ND 4.0</b></a> 
-
+  <a href="https://www.linkedin.com/in/mashood3624/">Mashood M. Mohsan</a> · Muhayy Ud Din · Binzhao Xu · Ahmad Abubakar · Irfan Hussain<br>
+  Khalifa University Center for Autonomous Robotic Systems (KUCARS)<br>
+  Khalifa University, UAE
 </p>
 
 <p align="center">
-  
+  <a href="https://www.ku.ac.ae/"><img src="assets/logos/khalifa-university.png" alt="Khalifa University" height="48"></a>
+  &nbsp;&nbsp;
+  <a href="https://touchripe.com/"><img src="assets/logos/touchripe.png" alt="TouchRIPE" height="48"></a>
+  &nbsp;&nbsp;
+  <a href="https://www.ku.ac.ae/kucars"><img src="assets/logos/kucars.jpg" alt="KUCARS" height="48"></a>
+  &nbsp;&nbsp;
+  <a href="https://www.linkedin.com/company/ihlab/"><img src="assets/logos/aeris-lab.jpeg" alt="AERIS Lab" height="48"></a>
 </p>
 
-<div align="center">
-  <img src="./images/overview_github.png" width="80%" alt="Overview"/>
-</div>
+<p align="center">
+  <a href="https://mashood3624.github.io/Language_Tactile/">Project website</a> ·
+  <a href="https://youtu.be/QaMzg2h5LKA">Video</a> ·
+  <a href="#quick-start">Quick start</a> ·
+  <a href="#dataset">Dataset</a> ·
+  <a href="#citation">Citation</a>
+</p>
 
-The proposed wearable device for real-time, and non-destructive fruit firmness estimation. The user palpates a Kiwi, and the proposed model processes the VBTS palpation recording to predict firmness in a non-destructive approach.
+Language descriptions guide a tactile image encoder to learn material representations across sensors. Training has two stages: distill a frozen BART language teacher into a ViT tactile student, then freeze the tactile encoder and train a material classifier. Inference uses tactile images alone.
 
----
+![Language–tactile distillation and downstream classification](assets/main.png)
 
-# Code & Dataset will be uploaded soon
+## Quick start
 
-## Demonstration of On-Tree Firmness Estimation
+### 1. Install the environment
 
-<div align="Center">
-  <img src="./images/demo_github.gif"
-  width="80%">
-</div>
-
-## Our Related work 
-
-This project builds on our prior research in tactile sensing and fruit firmness estimation. For further exploration of our methods and insights, refer to:
-
-- [SwishFormer for robust firmness and ripeness recognition of fruits using visual tactile imagery (Postharvest Biology and Technology, 2025)](https://doi.org/10.1016/j.postharvbio.2025.113487): Robot palpation-based fruit sorting is performed using the proposed SwishFormer algorithm, which processes vision-based tactile sequences via a hardswish-activated transformer and Random Forest regressor. The system achieves a 96.6–98.3% ripeness classification success and up to 13.69% R² improvement with 2× fewer parameters than prior models.
-- [Soft Vision-Based Tactile-Enabled SixthFinger: Advancing Daily Objects Manipulation for Stroke Survivors (RoboSoft, 2025)](https://arxiv.org/abs/2501.06806): Presents a soft robotic finger with integrated vision-based tactile sensing for autonomous grip adjustment via slippage detection. A transformer-based model trained on diverse tactile data enables robust object manipulation for stroke survivors across varied real-world tasks.
-- [Cross-Modal Knowledge Distillation for Efficient Material Recognition: Aligning Language Descriptions with Tactile Image Models (IEEE IROS WorkShop BoB, 2024)](https://openreview.net/forum?id=EKYZaxzvae): Aligning Language Descriptions with Tactile Image Models (IEEE IROS WorkShop BoB, 2024): Proposes a cross-modal distillation framework where a BART language model transfers semantic knowledge to a ViT-based tactile image model for material recognition. The distilled ViT achieves 74.70% accuracy (↑16.87%) and is validated through real-world UR10 robot experiments.
-
-We encourage readers to explore these works for deeper technical context and complementary advancements.
-
-## Acknowledgements
-This publication is based upon work supported by the Khalifa University of Science and Technology under Award No. RC1-2018-KUCARS. 
-Some elements of this project's README design were adapted from <a href="https://github.com/rpl-cmu/YCB-Slide"><b>YCB-Slide</b></a>.
-The website was built using  <a href="https://github.com/RomanHauksson/academic-project-astro-template"><b>Roman Hauksson's</b></a> academic project page template.
-
-## Bibtex
+```bash
+git clone https://github.com/Mashood3624/Language_Tactile.git
+cd Language_Tactile
+conda env create -f environment.yml
+conda activate Mashood_LT
 ```
-@article{MOHSAN2025110593,
-title = {A wearable thumb device for fruit firmness estimation with vision-based tactile sensing},
-journal = {Computers and Electronics in Agriculture},
-volume = {237},
-pages = {110593},
-year = {2025},
-issn = {0168-1699},
-doi = {https://doi.org/10.1016/j.compag.2025.110593},
-url = {https://www.sciencedirect.com/science/article/pii/S0168169925006994},
-author = {Mashood M. Mohsan and Basma B. Hasanen and Taimur Hassan and Lakmal Seneviratne and Irfan Hussain}
+
+The environment pins Python 3.10, PyTorch 2.0.1 and CUDA 11.7. GPU training requires a compatible NVIDIA driver; CUDA is selected automatically when available.
+
+### 2. Add the dataset
+
+[**Download dataset from here**](https://huggingface.co/datasets/YOUR_HF_USERNAME/Language_Tactile)
+
+Save `dataset.zip` inside `Language_Tactile/` and extract it from the project directory:
+
+```bash
+unzip -o dataset.zip
+```
+
+The folder layout should be:
+
+```text
+Language_Tactile/
+├── dataset/
+│   ├── images/
+│   │   ├── hct/
+│   │   └── ssvtp/
+│   ├── splits/
+│   └── additional/
+├── configs/
+├── environment.yml
+├── train_distillation.py
+└── train_fewshot.py
+```
+
+The image paths and CSVs are already configured for this layout. No path edits are needed.
+
+### 3. Train in two stages
+
+Run distillation first, then classification:
+
+```bash
+python train_distillation.py
+python train_fewshot.py
+```
+
+Distillation saves the encoder to `weights/distillation/best_weights/`. The second script loads it automatically, freezes the encoder and saves its results to `weights/fewshot/`. Pretrained models download on the first run.
+
+Change training settings in [distillation.json](https://github.com/Mashood3624/Language_Tactile/blob/main/configs/distillation.json) and [fewshot.json](https://github.com/Mashood3624/Language_Tactile/blob/main/configs/fewshot.json).
+
+## Dataset
+
+The four experiment CSVs contain **39,717 tactile–vision pairs**, with language descriptions and material labels:
+
+| Source | Distillation | Few-shot | Total |
+| --- | ---: | ---: | ---: |
+| TVL/HCT | 27,223 | 8,683 | 35,906 |
+| SSVTP | 2,475 | 1,336 | 3,811 |
+| **Combined** | **29,698** | **10,019** | **39,717** |
+
+Counts include training and evaluation. Distillation uses **21,035 / 8,663** train/evaluation pairs; classification uses **7,147 / 2,872**.
+
+The `additional/` folder contains **2,462 unused labeled pairs** and **16 pairs requiring label confirmation**, excluded from the experiment splits. The complete download contains **42,195 pairs / 84,390 images**, approximately **14.3 GB**.
+
+## Citation
+
+```bibtex
+@inproceedings{mohsan2026language,
+  title={Language-Guided Representation Learning for Robust Cross-Sensor Tactile Perception},
+  author={Mohsan, Mashood M. and Din, Muhayy Ud and Xu, Binzhao and Abubakar, Ahmad and Hussain, Irfan},
+  booktitle={IEEE/RSJ International Conference on Intelligent Robots and Systems (IROS)},
+  year={2026}
 }
 ```
 
+## Acknowledgements
+
+Data sources: [TVL/HCT](https://tactile-vlm.github.io/) and [SSVTP](https://sites.google.com/berkeley.edu/ssvtp). Code builds on [MDistiller](https://github.com/megvii-research/mdistiller), [Transformers](https://github.com/huggingface/transformers) and the [distillation example](https://github.com/philschmid/knowledge-distillation-transformers-pytorch-sagemaker).
