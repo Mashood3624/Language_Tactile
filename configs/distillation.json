@@ -1,0 +1,16 @@
+{
+    "output_dir": "./weights/distillation",
+    "image_encoder": "google/vit-base-patch16-224",
+    "text_encoder": "facebook/bart-base",
+    "per_device_train_batch_size": 64,
+    "per_device_eval_batch_size": 64,
+    "dataset_name": "Combine_HCT_SSVTP",
+    "data_root": "./dataset",
+    "train_csv": "./dataset/splits/train_distillation.csv",
+    "test_csv": "./dataset/splits/test_distillation.csv",
+    "pre_trained_vision_weights": true,
+    "pre_trained_text_weights": true,
+    "distillation_type": "KD_feature",
+    "alpha": 0.25,
+    "temperature": 3.5
+}

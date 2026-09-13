@@ -1,0 +1,17 @@
+{
+    "output_dir": "./weights/fewshot",
+    "image_encoder": "./weights/distillation/best_weights",
+    "image_processor_name": "google/vit-base-patch16-224",
+    "text_encoder": "",
+    "num_train_epochs": 100,
+    "per_device_train_batch_size": 32,
+    "per_device_eval_batch_size": 32,
+    "dataset_name": "Combine_HCT_SSVTP",
+    "data_root": "./dataset",
+    "train_csv": "./dataset/splits/train_fewshot.csv",
+    "test_csv": "./dataset/splits/test_fewshot.csv",
+    "pre_trained_vision_weights": true,
+    "freeze_vision": true,
+    "freeze_text": false,
+    "learning_rate": 0.0002
+}
