@@ -1,195 +1,97 @@
-﻿<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Language-Guided Representation Learning for Robust Cross-Sensor Material Recognition</title>
-  <link rel="stylesheet" href="styles.css" />
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="IROS 2026: Language-guided distillation for robust cross-sensor tactile perception. Paper, video, datasets and interactive experimental results.">
+<title>Language-Guided Tactile Perception · IROS 2026</title>
+<style>
+:root{--ink:#252b33;--muted:#596574;--blue:#245b89;--line:#d8dee5;--wash:#f3f6f9}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:white;color:var(--ink);font:17px/1.65 Georgia,'Times New Roman',serif}a{color:var(--blue);text-underline-offset:3px}a:hover{text-decoration:underline}a:focus-visible,button:focus-visible,select:focus-visible,summary:focus-visible{outline:2px solid var(--blue);outline-offset:4px}
+.wrap{width:min(1000px,calc(100% - 36px));margin:auto}header{text-align:center;padding:32px 0 20px}.venue{font:600 14px/1.5 'Segoe UI',Arial,sans-serif;color:var(--blue);margin:0 0 14px}h1,h2,h3,nav,table,button,select,label,figcaption,.note,.axis,.chart-row{font-family:'Segoe UI',Arial,sans-serif}h1{font-size:clamp(27px,3.2vw,40px);line-height:1.25;letter-spacing:-.02em;font-weight:650;margin:0 auto 18px;max-width:960px}h2{font-size:25px;font-weight:650;line-height:1.3;text-align:center;margin:0 0 18px}h3{font-size:18px;line-height:1.4;margin:0 0 10px;font-weight:600}p{margin:0 0 15px}.authors{font:17px/1.8 'Segoe UI',Arial,sans-serif;margin-bottom:7px}.authors span{white-space:nowrap}.affiliation{font:14px/1.6 'Segoe UI',Arial,sans-serif;color:var(--muted);margin-bottom:8px}.note,figcaption{font-size:13px;line-height:1.6;color:var(--muted)}nav{display:flex;justify-content:center;flex-wrap:wrap;gap:10px 24px;margin:20px 0 0;font-size:14px;font-weight:600}nav a{text-decoration:none}
+section{padding:28px 0;border-top:1px solid var(--line);scroll-margin-top:16px}figure{margin:0}figcaption{text-align:center;margin-top:9px}.placeholder{height:250px;border:1px dashed #b9c2cd;background:#fafbfc;display:grid;place-items:center;color:var(--muted);font:14px 'Segoe UI',Arial,sans-serif}.reading{max-width:850px;margin:auto}.two-col{display:grid;grid-template-columns:1fr 1fr;gap:28px}.video{width:100%;aspect-ratio:16/9;background:var(--wash)}iframe{display:block;border:0;width:100%;height:100%}.equation{text-align:center;background:var(--wash);padding:12px;margin:16px 0;font-style:italic}.table-scroll{overflow-x:auto}table{border-collapse:collapse;width:100%;font-size:14px;line-height:1.5;font-variant-numeric:tabular-nums}caption{text-align:center;font-size:13px;color:var(--muted);padding:0 0 10px}th,td{padding:10px 12px;text-align:center;border-bottom:1px solid var(--line)}thead{border-top:2px solid #515d6b;border-bottom:1px solid #515d6b}th:first-child,td:first-child{text-align:left}tbody th{font-weight:500}tr.ours{background:#edf3f8;font-weight:600}tbody tr:hover{background:var(--wash)}
+.controls{display:flex;align-items:center;justify-content:center;gap:10px 20px;flex-wrap:wrap;margin:12px 0 18px;font-size:14px}select,button{font-size:14px;color:var(--ink);background:white;border:1px solid #aeb9c5;border-radius:4px;padding:8px 12px}button{cursor:pointer}.chart{margin:12px 0 16px}.axis{display:flex;justify-content:space-between;margin-left:150px;padding-right:58px;font-size:11px;color:var(--muted)}.chart-row{display:grid;grid-template-columns:140px 1fr 50px;gap:10px;align-items:center;margin:12px 0;font-size:13px}.track{height:21px;background:#f1f4f7;border-left:1px solid #c3cbd4}.fill{height:100%;width:0;transition:width .45s ease-out;background:var(--bar,var(--blue))}.chart-row output{font-variant-numeric:tabular-nums;text-align:right}.result-note{text-align:center;font:14px/1.6 'Segoe UI',Arial,sans-serif;min-height:23px;color:var(--blue)}details{margin-top:18px}summary{cursor:pointer;font:600 14px 'Segoe UI',Arial,sans-serif;color:var(--blue);padding:8px 0}.pdf{height:720px;border:1px solid var(--line)}pre{background:var(--wash);padding:18px;overflow:auto;margin:0;font:13px/1.6 Consolas,monospace}footer{text-align:center;border-top:1px solid var(--line);padding:22px 0}.citation-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px}.citation-head h2{margin:0}.empty-js{font-size:14px;color:var(--muted)}
+@media(max-width:680px){body{font-size:16px}.two-col{grid-template-columns:1fr;gap:22px}header{padding-top:24px}h1{font-size:28px}h2{font-size:23px}.placeholder{height:180px}th,td{padding:8px;white-space:nowrap}.chart-row{grid-template-columns:105px 1fr 44px;gap:7px;font-size:12px}.axis{margin-left:112px;padding-right:51px}.pdf{height:510px}section{padding:23px 0}}
+.overview-top{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,2fr);gap:24px;align-items:center;margin-bottom:14px}.paper-image{display:block;width:100%;height:auto}.overview-copy{margin-top:20px}.overview-copy p{font-size:16px}.figure-link{display:block}.umap{max-width:850px;margin:auto}.key-result{font-weight:600;color:var(--blue)}@media(max-width:680px){.overview-top{grid-template-columns:1fr}.overview-top img{max-width:460px;margin:auto}}
+body{font-family:Aptos,'Segoe UI',Calibri,Arial,sans-serif}
+.organization-logos{display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:16px 24px;max-width:600px;margin:auto}.organization-logos a{display:flex;align-items:center;justify-content:center;min-height:4px}.organization-logos img{display:block;max-width:100%;width:auto;height:auto;max-height:40px;object-fit:contain}
+main p:not(.note):not(.result-note):not(.empty-js){text-align:justify;hyphens:auto}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.fill{transition:none}}
+</style>
 </head>
 <body>
-  <div class="page-shell">
-    <header class="hero">
-      <div class="hero-inner container">
-        <div class="hero-text">
-          <p class="eyebrow">IROS 2026 Conference Paper</p>
-          <h1>Language-Guided Representation Learning for Robust Cross-Sensor Material Recognition</h1>
-          <p class="hero-description">
-            A language-guided distillation framework for sensor-robust tactile representations that generalize across vision-based tactile sensors.
-          </p>
-          <div class="hero-meta">
-            <p><strong>Authors:</strong> Mashood M. Mohsan, Muhayy Ud Din, Binzhao Xu, Ahmad Abubakar, Irfan Hussain*</p>
-            <p><strong>Affiliation:</strong> Khalifa University Center for Autonomous Robotic Systems (KUCARS), Khalifa University, UAE</p>
-          </div>
-          <div class="hero-actions">
-            <a class="button button-primary" href="Language_Tactile_IROS_2026_FINAL.pdf" target="_blank">Download Paper</a>
-            <a class="button button-secondary" href="#abstract">Read Abstract</a>
-          </div>
-        </div>
-        <div class="hero-stats">
-          <div class="stat-card">
-            <span class="stat-value">56K</span>
-            <span class="stat-label">Multimodal samples</span>
-          </div>
-          <div class="stat-card">
-            <span class="stat-value">95%</span>
-            <span class="stat-label">100-shot accuracy</span>
-          </div>
-          <div class="stat-card">
-            <span class="stat-value">+19%</span>
-            <span class="stat-label">Max cross-sensor gain</span>
-          </div>
-        </div>
-      </div>
-    </header>
+<header class="wrap">
+<p class="venue">Accepted at IEEE/RSJ IROS 2026</p>
+<h1>Language-Guided Representation Learning for Robust Cross-Sensor Tactile Perception</h1>
+<p class="authors"><span>Mashood M. Mohsan</span> · <span>Muhayy Ud Din</span> · <span>Binzhao Xu</span> · <span>Ahmad Abubakar</span> · <span>Irfan Hussain</span></p>
+<p class="affiliation">Khalifa University Center for Autonomous Robotic Systems (KUCARS)<br>Khalifa University, UAE</p>
+<p class="note">Contact: <a href="https://www.linkedin.com/in/mashood3624/" target="_blank" rel="noopener">Mashood M. Mohsan on LinkedIn</a></p>
+<div class="organization-logos" aria-label="Organizations">
+  <a href="https://www.ku.ac.ae/" target="_blank" rel="noopener"><img src="Logos/Khalifa_logo.png" alt="Khalifa University"></a>
+  <a href="https://www.touchripe.com/" target="_blank" rel="noopener"><img src="Logos/TouchRIPE.png" alt="TouchRIPE"></a>
+  <a href="https://www.ku.ac.ae/kucars" target="_blank" rel="noopener"><img src="Logos/KUCARS.jpg" alt="KUCARS"></a>
+  <a href="https://www.linkedin.com/company/ihlab/" target="_blank" rel="noopener"><img src="Logos/ihlab_logo.jpeg" alt="AERIS Lab — Dr. Irfan's Lab"></a>
+</div>
+<nav aria-label="Paper navigation"><a href="./Language_Tactile_IROS_2026_FINAL%20(1).pdf">Paper PDF</a><a href="#video">Video</a><a href="#method">Method</a><a href="#datasets">Datasets</a><a href="#results">Results</a><a href="#citation">BibTeX</a></nav>
+</header>
+<main class="wrap">
+<section aria-label="Research overview"><figure><div class="overview-top"><a class="figure-link" href="application.png" target="_blank" rel="noopener"><img class="paper-image" src="application.png" width="972" height="1084" alt="UR-10 flask classification and insertion, with tactile observations from DIGIT, GelHex and GelSight mini sensors."></a><a class="figure-link" href="architecture.png" target="_blank" rel="noopener"><img class="paper-image" src="architecture.png" width="2030" height="676" alt="Cross-modal distillation with a trainable tactile student and frozen language teacher, followed by a frozen tactile encoder and trainable classifier for downstream tasks."></a></div></figure><div class="two-col overview-copy"><div><h3>From sensor-dependent images to shared material semantics</h3><p>The same material produces different contact images across tactile sensors. Descriptions such as “glossy, splotchy, hard” capture properties that persist across hardware.</p></div><div><h3>Language supervision during training</h3><p>A frozen language teacher guides the tactile encoder through feature-level distillation. The learned representation can then be reused with a lightweight task-specific classifier.</p></div></div></section>
+<section id="abstract"><h2>Abstract</h2><div class="reading"><p>Robots need touch to manipulate objects safely and reliably, as many properties, such as softness, texture, and contact stability, are hard to infer from vision alone. However, vision-based tactile sensors yield different observations of the same material due to variations in optics, elastomer properties, and illumination, leading to poor generalization when trained on a single or multiple sensors. We propose a <strong>language-guided distillation framework</strong> for learning sensor-robust tactile representations. Language encodes high-level semantic properties of touch (e.g., rough, soft, slippery) that remain invariant across sensing hardware, providing a natural sensor-agnostic supervisory signal.</p><p>We construct a 56k-sample touch–language dataset with human-annotated material labels and train a tactile encoder to align sensor-specific tactile images with language embeddings in a shared semantic space. We evaluate few-shot learning, cross-sensor transfer, and six existing tactile datasets. The results support data-efficient adaptation and robust material recognition across sensing hardware.</p></div></section>
+<section id="video"><h2>Project Video</h2><figure><div class="video"><iframe src="https://www.youtube.com/embed/QaMzg2h5LKA" title="Language-guided tactile perception project video" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div><figcaption><a href="https://youtu.be/QaMzg2h5LKA" target="_blank" rel="noopener">Watch the project video on YouTube</a></figcaption></figure></section>
+<section id="method"><h2>Language–Tactile Distillation</h2><div class="two-col"><div><h3>Training: language teaches touch</h3><p>A frozen <strong>BART language encoder</strong> provides semantic supervision to a trainable <strong>ViT tactile encoder</strong>. Feature-level knowledge distillation aligns softened teacher and student representations using KL divergence, alongside supervised classification.</p></div><div><h3>Adaptation: freeze the representation</h3><p>For a new task, the distilled tactile encoder is frozen and only a lightweight MLP classifier is trained. This reduces trainable parameters to <strong>0.017%</strong> of the total. Inference uses tactile input alone; language is needed only during training.</p></div></div><div class="equation">L = α L<sub>student</sub> + (1 − α) L<sub>KD-feat</sub></div><p class="note" style="text-align:center">Sections IV and VI-B: α = 0.25, temperature T = 3.5.</p></section>
+<section id="datasets"><h2>Multimodal Tactile Dataset</h2><div class="reading"><p>We combine <strong>HCT and SSVTP</strong> into approximately 56K DIGIT touch–vision–language samples. Three human annotators assign material labels across <strong>32 categories</strong>, using paired RGB images for consistent labeling. Twelve classes are used for distillation; twenty disjoint, unseen classes are reserved for recognition evaluation.</p></div><div class="table-scroll" tabindex="0" aria-label="Dataset comparison table"><table><caption>Table I. Dataset comparison as reported in the paper. Yes / No indicates modality or label availability.</caption><thead><tr><th scope="col">Dataset</th><th scope="col">Vision</th><th scope="col">Tactile</th><th scope="col">Language</th><th scope="col">Class labels</th><th scope="col">Classes</th><th scope="col">Samples</th></tr></thead><tbody>
+<tr><th scope="row">TAG</th><td>Yes</td><td>Yes</td><td>No</td><td>Yes</td><td>20</td><td>121K</td></tr>
+<tr><th scope="row">YCB</th><td>No</td><td>Yes</td><td>No</td><td>Yes</td><td>10</td><td>182K</td></tr>
+<tr><th scope="row">ICRA18</th><td>No</td><td>Yes</td><td>No</td><td>Yes</td><td>19</td><td>139K</td></tr>
+<tr><th scope="row">FEEL</th><td>Yes</td><td>Yes</td><td>No</td><td>Yes</td><td>51</td><td>111K</td></tr>
+<tr><th scope="row">SSVTP</th><td>Yes</td><td>Yes</td><td>Yes</td><td>No</td><td>—</td><td>10K</td></tr>
+<tr><th scope="row">HCT</th><td>Yes</td><td>Yes</td><td>Yes</td><td>No</td><td>—</td><td>46K</td></tr>
+<tr class="ours"><th scope="row">Ours</th><td>Yes</td><td>Yes</td><td>Yes</td><td>Yes</td><td>32</td><td>56K</td></tr>
+</tbody></table></div></section>
+<section id="results"><h2>Experimental Results</h2><p class="reading">Select a dataset and metric to compare the models in Table II. Each plot uses a fixed scale and displays exact values. The proposed model is distilled first, then adapted to downstream datasets; baselines are trained directly on each target dataset.</p><div class="controls"><label>Dataset <select id="dataset"><option>TAG</option><option>YCB</option><option>ICRA18</option><option>FEEL</option><option>SSVTP</option><option>HCT</option><option selected>Our Dataset</option></select></label><label>Metric <select id="metric"><option value="0">Accuracy (%)</option><option value="1">Precision</option><option value="2">Recall</option><option value="3">F1 score</option></select></label></div><div id="benchmark" class="chart" aria-label="Benchmark comparison"><p class="empty-js">Enable JavaScript to explore the interactive comparison.</p></div><p id="benchmark-note" class="result-note" aria-live="polite"></p><details><summary>Show numerical results for the selected dataset</summary><div class="table-scroll"><table><caption>Table II. All metrics for the selected dataset.</caption><thead><tr><th>Model</th><th>Accuracy (%)</th><th>Precision</th><th>Recall</th><th>F1</th></tr></thead><tbody id="numerical"></tbody></table></div></details></section>
+<section id="modality-results"><h2>Language Supervision Improves Tactile Recognition</h2><p class="reading">The proposed model achieves <strong>95.06% accuracy using only tactile input at inference</strong>. This is a <span class="key-result">30.07 percentage-point improvement</span> over the tactile-only baseline and 4.17 points above the vision-only model (Table III).</p><div class="two-col"><div class="table-scroll"><table><caption>Table III. Comparison across modalities.</caption><thead><tr><th scope="col">Modality</th><th scope="col">Accuracy (%)</th></tr></thead><tbody><tr><th scope="row">Language only</th><td>60.38</td></tr><tr><th scope="row">Tactile only</th><td>64.99</td></tr><tr><th scope="row">Vision only</th><td>90.89</td></tr><tr class="ours"><th scope="row">Ours (language-guided tactile)</th><td>95.06</td></tr></tbody></table></div><div><div class="controls"><label>View <select id="modality-view"><option value="accuracy">Accuracy (%)</option><option value="gain">Gain over tactile-only (pp)</option></select></label></div><div id="modalities" class="chart"></div></div></div></section>
+<section id="umap"><h2>Structure of the Learned Representations</h2><figure class="umap"><a class="figure-link" href="umap.png" target="_blank" rel="noopener"><img class="paper-image" src="umap.png" width="974" height="502" loading="lazy" alt="UMAP plots comparing tactile embeddings without distillation on the left and with language-guided distillation on the right, with steel, plastic, fabric, metal and rubber clusters."></a><figcaption><strong>Figure 5.</strong> UMAP projections of tactile embeddings without (left) and with (right) language-guided distillation. The distilled model forms more coherent and discriminative class clusters compared to the baseline.</figcaption></figure></section>
+<section><h2>Ablation Study</h2><div class="controls"><label>Experiment <select id="ablation"><option value="teacher">Language teacher (AS-1)</option><option value="loss">Distillation loss (AS-2)</option><option value="temperature">Temperature (AS-3)</option><option value="batch">Batch size (AS-4)</option><option value="rate">Learning rate (AS-4)</option></select></label></div><div id="ablation-plot" class="chart"></div><p class="note">Table IV · Accuracy (%). Each experiment varies a different component; values are not directly interchangeable across ablation groups.</p></section>
+<section id="paper"><h2>Read the Paper</h2><div class="pdf"><iframe loading="lazy" title="Accepted IROS paper" src="./Language_Tactile_IROS_2026_FINAL%20(1).pdf#page=1"></iframe></div><p class="note" style="text-align:center;margin-top:10px"><a href="./Language_Tactile_IROS_2026_FINAL%20(1).pdf">Open the full PDF</a></p></section>
 
-    <nav class="page-nav container">
-      <a href="#abstract">Abstract</a>
-      <a href="#introduction">Introduction</a>
-      <a href="#methodology">Methodology</a>
-      <a href="#results">Results</a>
-      <a href="#figures">Figures</a>
-      <a href="#resources">Resources</a>
-      <a href="#contact">Contact</a>
-    </nav>
-
-    <main class="container main-content">
-      <section id="abstract" class="section card">
-        <h2>Abstract</h2>
-        <p>
-          Robots need touch to manipulate objects safely and reliably, as many properties, such as softness, texture, and contact stability, are hard to infer from vision alone. However, vision-based tactile sensors yield different observations of the same material due to variations in optics, elastomer properties, and illumination, leading to poor generalization when trained on a single or multiple sensors.
-        </p>
-        <p>
-          We propose a language-guided distillation framework for learning sensor-robust tactile representations. Language encodes high-level semantic properties of touch (e.g., rough, soft, slippery) that remain invariant across sensing hardware, providing a natural sensor-agnostic supervisory signal.
-        </p>
-        <p>
-          We construct a 56K-sample touch–language dataset with human-annotated material labels and train a tactile encoder to align sensor-specific tactile images with language embeddings in a shared semantic space. We evaluate our approach for few-shot learning and cross-sensor transfer and benchmark it on six existing tactile datasets.
-        </p>
-      </section>
-
-      <section id="introduction" class="section card">
-        <h2>Introduction</h2>
-        <p>
-          Tactile perception plays a fundamental role in robotic manipulation. While vision provides global scene understanding, touch enables inference of material properties and contact dynamics that are difficult to capture visually. Prior work shows that tactile sensing improves grasp prediction and material recognition.
-        </p>
-        <p>
-          Despite recent progress, tactile perception remains strongly sensor-dependent. Differences in optical configuration, elastomer mechanics, illumination, and fabrication cause the same material to produce distinct contact images across devices. As a result, models trained on one sensor often degrade when applied to another, because learned features entangle semantic material properties with sensor-specific artefacts.
-        </p>
-        <p>
-          Humans describe tactile experiences using language that abstracts away sensing mechanisms. Words such as smooth, rough, soft, and slippery encode semantic material properties independent of hardware. Language therefore provides a sensor-agnostic semantic space for aligning tactile observations across sensors.
-        </p>
-      </section>
-
-      <section id="methodology" class="section card split-grid">
-        <div>
-          <h2>Methodology</h2>
-          <p>
-            We train a tactile Vision Transformer using both supervised material classification and language-based feature distillation. A frozen language encoder serves as the teacher, while the tactile encoder learns to align its representations with language semantics.
-          </p>
-          <ul>
-            <li>Language teacher encoder (BART) remains frozen during training.</li>
-            <li>The tactile encoder aligns sensor-dependent tactile features with a language semantic space.</li>
-            <li>After distillation, the tactile encoder is frozen and only a lightweight classifier is fine-tuned for downstream tasks.</li>
-          </ul>
-        </div>
-        <div>
-          <h2>Dataset</h2>
-          <p>
-            The dataset integrates tactile images, RGB observations, natural language descriptions, and material labels. It contains 56K samples across 32 material classes, constructed from HCT and SSVTP sources with human-annotated class labels for supervised evaluation.
-          </p>
-        </div>
-      </section>
-
-      <section id="results" class="section card">
-        <h2>Results</h2>
-        <p>
-          Our approach yields strong improvements in few-shot learning and cross-sensor transfer. It outperforms tactile-only baselines and generalizes to multiple tactile datasets with very limited adaptation data.
-        </p>
-        <div class="result-grid">
-          <article>
-            <h3>Few-Shot Performance</h3>
-            <p>Achieves 95% accuracy in the 100-shot setting on the proposed tactile benchmark.</p>
-          </article>
-          <article>
-            <h3>Cross-Sensor Transfer</h3>
-            <p>Improves cross-sensor transfer by an average of +13.3% accuracy and up to +19% accuracy on existing tactile datasets.</p>
-          </article>
-          <article>
-            <h3>Benchmark Gains</h3>
-            <p>Outperforms baselines such as CMC, DeiT, and ConvNeXt across TAG, YCB, FEEL, SSVTP, HCT, and the proposed dataset.</p>
-          </article>
-        </div>
-      </section>
-
-      <section id="figures" class="section card">
-        <h2>Figure Gallery</h2>
-        <p>Upload the paper figures as PNG files and I will place them directly into the gallery.</p>
-        <div class="figure-grid">
-          <figure>
-            <div class="figure-placeholder">Figure 1</div>
-            <figcaption>Overall method and sensor-agnostic tactile learning illustration.</figcaption>
-          </figure>
-          <figure>
-            <div class="figure-placeholder">Figure 3</div>
-            <figcaption>Few-shot learning results and confusion matrix.</figcaption>
-          </figure>
-          <figure>
-            <div class="figure-placeholder">Figure 5</div>
-            <figcaption>UMAP projections of tactile embeddings before and after distillation.</figcaption>
-          </figure>
-          <figure>
-            <div class="figure-placeholder">Figure 6</div>
-            <figcaption>Grad-CAM visualizations showing tactile attention.</figcaption>
-          </figure>
-        </div>
-        <p class="upload-note">Recommended filenames for uploads:</p>
-        <ul class="file-list">
-          <li><code>fig1_overall.png</code></li>
-          <li><code>fig3_fewshot.png</code></li>
-          <li><code>fig5_umap.png</code></li>
-          <li><code>fig6_gradcam.png</code></li>
-        </ul>
-      </section>
-
-      <section id="resources" class="section card split-grid">
-        <div>
-          <h2>Resources</h2>
-          <p>
-            The full paper is available below, and the figure placeholders can be replaced as soon as PNG versions are added to the repository.
-          </p>
-          <ul>
-            <li><strong>Paper PDF:</strong> <a href="Language_Tactile_IROS_2026_FINAL.pdf" target="_blank">Language_Tactile_IROS_2026_FINAL.pdf</a></li>
-            <li><strong>Figures:</strong> PNG images for diagrams and charts</li>
-            <li><strong>Supplement:</strong> code, dataset links, or slides</li>
-          </ul>
-        </div>
-        <div class="resource-card">
-          <h3>Deployment</h3>
-          <p>
-            Commit the HTML, CSS, PDF, and figures to the `gh_pages` branch. The site will then be published from the root of that branch.
-          </p>
-        </div>
-      </section>
-
-      <section id="contact" class="section card">
-        <h2>Contact</h2>
-        <p>
-          The website now uses a clean, academic layout and directly reflects your paper title, abstract, introduction, methodology, dataset, and results summary.
-        </p>
-        <p>Please upload the following figure PNGs:</p>
-        <ul>
-          <li><strong>Figure 1:</strong> architecture / pipeline diagram</li>
-          <li><strong>Figure 3:</strong> few-shot performance and confusion matrix</li>
-          <li><strong>Figure 5:</strong> UMAP embedding visualization</li>
-          <li><strong>Figure 6:</strong> Grad-CAM attention visualization</li>
-        </ul>
-      </section>
-    </main>
-
-    <footer class="site-footer">
-      <div class="container footer-inner">
-        <p>Language-Guided Representation Learning for Robust Cross-Sensor Material Recognition | GitHub Pages site for your IROS 2026 paper.</p>
-      </div>
-    </footer>
+<section id="related-works">
+  <h2>Our Related Works</h2>
+  <div class="reading">
+    <p><a href="https://mashood3624.github.io/WearableDevice/" target="_blank" rel="noopener"><strong>A Wearable Thumb Device for Fruit Firmness Estimation with Vision-Based Tactile Sensing</strong></a><br><em>Computers and Electronics in Agriculture, 2025.</em> A thumb-worn tactile device for non-destructive fruit firmness estimation through human palpation.</p>
+    <p><a href="https://mashood3624.github.io/SwishFormer/" target="_blank" rel="noopener"><strong>SwishFormer for Robust Firmness and Ripeness Recognition of Fruits Using Visual Tactile Imagery</strong></a><br><em>Postharvest Biology and Technology, 2025.</em> A lightweight model for estimating fruit firmness and recognizing ripeness from visual tactile sequences.</p>
+    <p><a href="https://patents.google.com/patent/US20260099918A1/en" target="_blank" rel="noopener"><strong>Wearable Device Using Vision-Based Tactile Sensors to Detect Object Firmness</strong></a><br><em>US patent application publication US20260099918A1, 2026.</em> Wearable tactile sensing and machine learning for estimating object firmness.</p>
+    <p><a href="https://openreview.net/forum?id=EKYZaxzvae" target="_blank" rel="noopener"><strong>Cross-Modal Knowledge Distillation for Efficient Material Recognition: Aligning Language Descriptions with Tactile Image Models</strong></a><br><em>IROS Workshop, 2024.</em> Earlier work on transferring semantic knowledge from language descriptions to tactile models for material recognition.</p>
   </div>
-</body>
-</html>
+</section>
+<section><h2>Acknowledgements</h2><p class="reading">This research was supported by the Center for Autonomous Robotic Systems (CARS), Khalifa University of Science and Technology (KU-CARS), through the project "T2FS (TactileThumbFirmSense) Device: A Wearable Thumb Device That is Capable of Sensing Fruit Firmness Using Vision-Based Tactile Sensors" by Silal, under Project ID: KU-EXT-SILAL-2025-8475000023.</p></section>
+<section id="citation"><div class="citation-head"><h2>BibTeX</h2><button id="copy" type="button">Copy citation</button></div><pre id="bibtex">@inproceedings{mohsan2026language,
+  title={Language-Guided Representation Learning for Robust Cross-Sensor Tactile Perception},
+  author={Mohsan, Mashood M. and Din, Muhayy Ud and Xu, Binzhao and Abubakar, Ahmad and Hussain, Irfan},
+  booktitle={IEEE/RSJ International Conference on Intelligent Robots and Systems (IROS)},
+  year={2026}
+}</pre><p id="copy-status" class="note" aria-live="polite"></p></section>
+</main><footer class="note">Khalifa University · IROS 2026</footer>
+<script>
+// Exact values transcribed from Tables II–IV of the supplied paper.
+const data={
+'TAG':[['CMC',54.7,null,null,null],['DEIT',57.96,.55,.58,.54],['ConvNeXt',56.48,.52,.56,.52],['Baseline',57.60,.54,.58,.54],['Proposed',61.20,.59,.61,.59]],
+'YCB':[['DEIT',88.72,.89,.89,.89],['ConvNeXt',83.33,.84,.83,.83],['Baseline',91.03,.91,.91,.91],['Proposed',97.71,.98,.98,.98]],
+'ICRA18':[['DEIT',58.42,.57,.55,.56],['ConvNeXt',63.15,.62,.60,.61],['Baseline',69.48,.69,.68,.68],['Proposed',73.86,.74,.73,.73]],
+'FEEL':[['DEIT',50.36,.52,.50,.44],['ConvNeXt',37.69,.39,.38,.30],['Baseline',49.88,.46,.50,.43],['Proposed',86.88,.87,.87,.87]],
+'SSVTP':[['DEIT',55.06,.40,.55,.45],['ConvNeXt',49.06,.40,.49,.38],['Baseline',62.17,.55,.62,.56],['Proposed',83.52,.83,.84,.83]],
+'HCT':[['DEIT',54.22,.61,.54,.52],['ConvNeXt',53.01,.57,.53,.49],['Baseline',68.67,.71,.69,.68],['Proposed',98.80,.99,.99,.99]],
+'Our Dataset':[['DEIT',60.27,.65,.60,.58],['ConvNeXt',53.62,.62,.54,.50],['Baseline',64.99,.68,.65,.63],['Proposed',95.06,.95,.95,.95]]};
+const ablations={teacher:[['RoBERTa',42.69],['BART',58.64],['DistilBERT',53.86]],loss:[['Feature KD',82.66],['DKD',34.02],['CosMin',58.64]],temperature:[['T = 3.0',82.76],['T = 3.5',83.46],['T = 4.5',83.11],['T = 5.0',82.17]],batch:[['B = 32',90.91],['B = 64',88.27],['B = 256',73.85],['B = 512',45.44]],rate:[['1 × 10⁻⁵',85.38],['2 × 10⁻⁵',95.06],['3 × 10⁻⁵',92.44]]};
+function plot(id,rows,max=100){
+ const host=document.getElementById(id);host.replaceChildren();
+ const axis=document.createElement('div');axis.className='axis';[0,.25,.5,.75,1].forEach(n=>{const tick=document.createElement('span');tick.textContent=String(n*max);axis.append(tick)});host.append(axis);
+ rows.forEach(([name,value])=>{const row=document.createElement('div');row.className='chart-row';const label=document.createElement('span');label.textContent=name;const track=document.createElement('div');track.className='track';const fill=document.createElement('div');fill.className='fill';fill.style.setProperty('--bar',name==='Proposed'||name==='Language-guided'?'#245b89':'#8295a8');const output=document.createElement('output');output.textContent=value===null?'N/A':value.toFixed(2);track.tabIndex=0;track.setAttribute('role','img');track.setAttribute('aria-label',`${name}: ${value===null?'not reported':value.toFixed(2)}${max===100?' percent':''}`);track.title=track.getAttribute('aria-label');track.append(fill);row.append(label,track,output);host.append(row);requestAnimationFrame(()=>{fill.style.width=value===null?'0%':`${value/max*100}%`})});
+}
+function updateBenchmark(){const name=document.getElementById('dataset').value;const metric=Number(document.getElementById('metric').value);const rows=data[name];plot('benchmark',rows.map(r=>[r[0],r[metric+1]]),metric===0?100:1);const tbody=document.getElementById('numerical');tbody.replaceChildren();rows.forEach(r=>{const tr=document.createElement('tr');if(r[0]==='Proposed')tr.className='ours';r.forEach((v,i)=>{const cell=document.createElement(i?'td':'th');if(!i)cell.scope='row';cell.textContent=i?(v===null?'Not reported':v.toFixed(2)):v;tr.append(cell)});tbody.append(tr)});const baseline=rows.find(r=>r[0]==='Baseline')[metric+1];const proposed=rows.find(r=>r[0]==='Proposed')[metric+1];document.getElementById('benchmark-note').textContent=`${name}: proposed − baseline = +${(proposed-baseline).toFixed(2)} ${metric===0?'percentage points':'('+document.getElementById('metric').selectedOptions[0].text+')'}.`}
+document.getElementById('dataset').addEventListener('change',updateBenchmark);document.getElementById('metric').addEventListener('change',updateBenchmark);document.getElementById('ablation').addEventListener('change',e=>plot('ablation-plot',ablations[e.target.value]));
+function updateModalities(){const gain=document.getElementById('modality-view').value==='gain';const rows=gain?[['Tactile-only',0],['Vision-only',25.90],['Language-guided',30.07]]:[['Language-only',60.38],['Tactile-only',64.99],['Vision-only',90.89],['Language-guided',95.06]];plot('modalities',rows,gain?40:100)}
+document.getElementById('modality-view').addEventListener('change',updateModalities);
+updateBenchmark();updateModalities();plot('ablation-plot',ablations.teacher);
+document.getElementById('copy').addEventListener('click',async()=>{try{await navigator.clipboard.writeText(document.getElementById('bibtex').textContent);document.getElementById('copy-status').textContent='Citation copied.'}catch{document.getElementById('copy-status').textContent='Copy unavailable. Select the citation text above to copy it manually.'}});
+</script>
+</body></html>
