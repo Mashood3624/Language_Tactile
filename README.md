@@ -105,11 +105,14 @@ The `additional/` folder contains **2,462 unused labeled pairs** and **16 pairs 
 ## Citation
 
 ```bibtex
-@inproceedings{mohsan2026language,
-  title={Language-Guided Representation Learning for Robust Cross-Sensor Tactile Perception},
-  author={Mohsan, Mashood M. and Din, Muhayy Ud and Xu, Binzhao and Abubakar, Ahmad and Hussain, Irfan},
-  booktitle={IEEE/RSJ International Conference on Intelligent Robots and Systems (IROS)},
-  year={2026}
+@misc{mohsan2026languageguidedrepresentationlearningrobust,
+      title={Language-Guided Representation Learning for Robust Cross-Sensor Material Recognition}, 
+      author={Mashood M. Mohsan and Muhayy Ud Din and Binzhao Xu and Ahmad Abubakar and Irfan Hussain},
+      year={2026},
+      eprint={2609.14783},
+      archivePrefix={arXiv},
+      primaryClass={cs.RO},
+      url={https://arxiv.org/abs/2609.14783}, 
 }
 ```
 
