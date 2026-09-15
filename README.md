@@ -49,7 +49,7 @@ The environment pins Python 3.10, PyTorch 2.0.1 and CUDA 11.7. GPU training requ
 
 ### 2. Add the dataset
 
-[**Download dataset from here**](https://huggingface.co/datasets/YOUR_HF_USERNAME/Language_Tactile)
+[**Download dataset from here**](https://huggingface.co/datasets/Mashood/Language_Tactile)
 
 Save `dataset.zip` inside `Language_Tactile/` and extract it from the project directory:
 
